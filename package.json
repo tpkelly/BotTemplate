@@ -1,0 +1,15 @@
+{
+  "name": "Template",
+  "version": "0.1.0",
+  "description": "Custom bot Template for discord",
+  "main": "bot.js",
+  "author": "Kazenone Alagar",
+  "dependencies": {
+    "discord.js": "^14.12.1",
+    "mongodb": "^5.8.0"
+  },
+  "scripts": {
+    "start": "node bot.js",
+    "start-prod": "pm2 start bot.js -o ../logs/template.log -e ../logs/template.err.log --time --name template"
+  }
+}

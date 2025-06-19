@@ -1,0 +1,22 @@
+/** Used for background tasks, such as cron timers */
+
+const { Client, IntentsBitField } = require('discord.js');
+const { MongoClient } = require('mongodb');
+
+const client = new Client({
+  intents: [IntentsBitField.Flags.Guilds],
+  partials: ['MESSAGE', 'CHANNEL']
+});
+
+const auth = require('../auth.json');
+
+client.once('ready', async () => {
+  console.log(`Template task as ${client.user.tag} @ ${new Date().toLocaleString()}!`);
+  try {
+    client.mongo = new MongoClient(auth.mongodb).db();
+  } finally {
+    client.destroy();
+  }
+});
+
+client.login(auth.discord);
